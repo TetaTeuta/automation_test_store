@@ -5,6 +5,7 @@ describe("Login ", () => {
         cy.visit(Cypress.env("loginUrl"));
         cy.get("#maincontainer").get("h1").should("contain", "Account Login");
     });
+
     it("Should fail", () => {
         cy.get("input[name=loginname]").type(Cypress.env("WRONG_USERNAME"));
         cy.get("input[name=password]").type(
