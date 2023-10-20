@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "setup": "npm ci",
+        "cypress:run": "cypress run",
         "cypress:open": "cypress open",
         "test:unit": "jest --coverage",
         "lint": "eslint cypress"
