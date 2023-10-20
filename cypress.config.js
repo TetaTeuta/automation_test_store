@@ -15,5 +15,9 @@ module.exports = defineConfig({
     env: {
         loginUrl: "index.php?rt=account/login",
         homeUrl: "/",
+        accUrl: "index.php?rt=account/account",
+        logoutUrl: "index.php?rt=account/logout",
+        logoutMsg:
+            "You have been logged off your account. It is now safe to leave the computer.",
     },
 });

@@ -21,4 +21,9 @@ describe("Login ", () => {
         );
         cy.url().should("include", "/account");
     });
+
+    after("Clean up after the test", () => {
+        cy.logOut();
+        cy.clearInfo();
+    });
 });

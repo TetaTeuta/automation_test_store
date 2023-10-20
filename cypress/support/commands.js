@@ -1,4 +1,14 @@
-Cypress.Commands.add("logOut", () => {});
+let LOCAL_STORAGE_CACHE = {};
+
+Cypress.Commands.add("logOut", () => {
+    cy.visit(Cypress.env("logoutUrl"));
+    cy.get(".contentpanel").should("contain", Cypress.env("logoutMsg"));
+});
+
+Cypress.Commands.add("clearInfo", () => {
+    localStorage.clear();
+    LOCAL_STORAGE_CACHE = {};
+});
 
 Cypress.Commands.add("checkSectionLength", (section, length) => {
     cy.get(section).within(() => {
