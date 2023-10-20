@@ -18,7 +18,5 @@ module.exports = defineConfig({
         accUrl: "index.php?rt=account/account",
         cartUrl: "index.php?rt=checkout/cart",
         logoutUrl: "index.php?rt=account/logout",
-        logoutMsg:
-            "You have been logged off your account. It is now safe to leave the computer.",
     },
 });

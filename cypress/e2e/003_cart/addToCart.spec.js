@@ -9,7 +9,6 @@ describe("Cart ", () => {
 
     it("Add product to the cart", () => {
         cy.clickItemInSection("#latest");
-
         cy.get("body").then(($body) => {
             if ($body.find(".nostock").length > 0) {
                 cy.selectAnotherProduct("#latest");

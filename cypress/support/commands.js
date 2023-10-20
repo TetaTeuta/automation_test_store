@@ -1,4 +1,6 @@
 let LOCAL_STORAGE_CACHE = {};
+const logoutMsg =
+    "You have been logged off your account. It is now safe to leave the computer.";
 
 Cypress.Commands.add("logIn", (user, pass) => {
     cy.visit(Cypress.env("loginUrl"));
@@ -9,7 +11,7 @@ Cypress.Commands.add("logIn", (user, pass) => {
 
 Cypress.Commands.add("logOut", () => {
     cy.visit(Cypress.env("logoutUrl"));
-    cy.get(".contentpanel").should("contain", Cypress.env("logoutMsg"));
+    cy.get(".contentpanel").should("contain", logoutMsg);
 });
 
 Cypress.Commands.add("clearInfo", () => {
@@ -40,6 +42,13 @@ Cypress.Commands.add("clickItemInSection", (section) => {
 
 Cypress.Commands.add("addToCart", () => {
     cy.get(".cart").click();
+    cy.url().should("contain", Cypress.env("cartUrl"));
+    cy.get(".product-list").within(() => {
+        cy.get("tr").length > 2;
+    });
+});
+
+Cypress.Commands.add("removeFromCart", () => {
     cy.url().should("contain", Cypress.env("cartUrl"));
     cy.get(".product-list").within(() => {
         cy.get("tr").length > 2;
