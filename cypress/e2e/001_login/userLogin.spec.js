@@ -11,7 +11,7 @@ describe("Login ", () => {
             Cypress.env("CORRECT_USERNAME"),
             Cypress.env("CORRECT_PASSWORD")
         );
-        cy.url().should("include", "/account");
+        cy.url().should("include", accUrl);
     });
 
     after("Clean up after the test", () => {

@@ -24,7 +24,7 @@ Cypress.Commands.add("checkSectionLength", (section, length) => {
 });
 
 Cypress.Commands.add("clickItemInSection", (section) => {
-    const rndInt = Math.floor(Math.random() * 3) + 1;
+    const rndInt = Math.floor(Math.random() * 4);
     cy.get(section).within(() => {
         cy.get(".thumbnails")
             .children()
@@ -36,6 +36,20 @@ Cypress.Commands.add("clickItemInSection", (section) => {
                 cy.url().should("include", href);
             });
     });
+});
+
+Cypress.Commands.add("addToCart", () => {
+    cy.get(".cart").click();
+    cy.url().should("contain", Cypress.env("cartUrl"));
+    cy.get(".product-list").within(() => {
+        cy.get("tr").length > 2;
+    });
+});
+
+Cypress.Commands.add("selectAnotherProduct", (section) => {
+    cy.go("back");
+    cy.clickItemInSection(section);
+    cy.addToCart();
 });
 
 const compareSnapshotCommand = require("cypress-visual-regression/dist/command");
