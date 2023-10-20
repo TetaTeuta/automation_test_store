@@ -1,29 +1,26 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add("logOut", () => {});
 
-const compareSnapshotCommand = require('cypress-visual-regression/dist/command');
+Cypress.Commands.add("checkSectionLength", (section, length) => {
+    cy.get(section).within(() => {
+        cy.get(".thumbnails").children().should("have.length", length);
+    });
+});
+
+Cypress.Commands.add("clickItemInSection", (section) => {
+    const rndInt = Math.floor(Math.random() * 3) + 1;
+    cy.get(section).within(() => {
+        cy.get(".thumbnails")
+            .children()
+            .eq(rndInt)
+            .find(".thumbnail > a")
+            .should("have.attr", "href")
+            .then((href) => {
+                cy.visit(href);
+                cy.url().should("include", href);
+            });
+    });
+});
+
+const compareSnapshotCommand = require("cypress-visual-regression/dist/command");
 
 compareSnapshotCommand();
