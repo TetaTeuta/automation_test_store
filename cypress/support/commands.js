@@ -1,5 +1,12 @@
 let LOCAL_STORAGE_CACHE = {};
 
+Cypress.Commands.add("logIn", (user, pass) => {
+    cy.visit(Cypress.env("loginUrl"));
+    cy.get("#maincontainer").get("h1").should("contain", "Account Login");
+    cy.get("input[name=loginname]").type(user);
+    cy.get("input[name=password]").type(`${pass}{enter}`);
+});
+
 Cypress.Commands.add("logOut", () => {
     cy.visit(Cypress.env("logoutUrl"));
     cy.get(".contentpanel").should("contain", Cypress.env("logoutMsg"));
