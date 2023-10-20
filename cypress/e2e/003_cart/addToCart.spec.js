@@ -4,10 +4,10 @@ describe("Cart ", () => {
             Cypress.env("CORRECT_USERNAME"),
             Cypress.env("CORRECT_PASSWORD")
         );
-        cy.visit(Cypress.env("homeUrl"));
     });
 
     it("Add product to the cart", () => {
+        cy.visit(Cypress.env("homeUrl"));
         cy.clickItemInSection("#latest");
         cy.get("body").then(($body) => {
             if ($body.find(".nostock").length > 0) {
@@ -16,7 +16,9 @@ describe("Cart ", () => {
         });
     });
 
-    it("Remove product from the cart", () => {});
+    it("Remove product from the cart", () => {
+        cy.removeFromCart();
+    });
 
     after("Clean up after the test", () => {
         cy.logOut();
