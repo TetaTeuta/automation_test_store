@@ -18,6 +18,8 @@ $ cd automation_test_store
 $ npm i
 ```
 
+Create new file cypress.env.json and copy the content of cypress.env.sample.json into the newvly created env file. Replce dumy data with correct one (you will have to register your own account on automationteststore.com for this purposes - sorry, security first)
+
 ## Plugins
 
 | Plugin                        |
